@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Angket Pengabdian kepada Masyarakat</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#eaf4ff,#f8fbff);
+    color:#1e293b;
+}
+
+.container{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+    margin-bottom:20px;
+}
+
+.logo{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+    margin-bottom:10px;
+}
+
+.header h3{
+    margin:5px 0;
+    font-size:18px;
+    color:#2563eb;
+}
+
+.header h1{
+    margin:8px 0;
+    font-size:30px;
+    color:#0f172a;
+}
+
+.header h2{
+    margin:8px 0 15px;
+    font-size:20px;
+    color:#475569;
+}
+
+.header p{
+    max-width:800px;
+    margin:10px auto;
+    line-height:1.6;
+    color:#64748b;
+}
+
+/* ================= TEAM ================= */
+
+.team{
+    background:#f8fafc;
+    border-radius:15px;
+    padding:15px;
+    margin-top:20px;
+}
+
+.team-title{
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#334155;
+}
+
+.team-list{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+}
+
+.team-member{
+    background:white;
+    border:1px solid #dbeafe;
+    border-radius:20px;
+    padding:7px 12px;
+    font-size:13px;
+    color:#475569;
+}
+
+/* ================= CARD ================= */
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card-title{
+    font-size:21px;
+    font-weight:bold;
+    color:#1d4ed8;
+    margin-bottom:18px;
+    border-bottom:2px solid #dbeafe;
+    padding-bottom:10px;
+}
+
+/* ================= FORM ================= */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#334155;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.10);
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+/* ================= QUESTIONS ================= */
+
+.question{
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:15px;
+    background:#f8fafc;
+}
+
+.question-number{
+    font-weight:bold;
+    color:#2563eb;
+    margin-bottom:7px;
+}
+
+.question-text{
+    font-size:16px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.scale{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+}
+
+.scale label{
+    margin:0;
+    cursor:pointer;
+    text-align:center;
+}
+
+.scale input{
+    display:none;
+}
+
+.scale span{
+    display:block;
+    background:white;
+    border:2px solid #cbd5e1;
+    border-radius:10px;
+    padding:10px 5px;
+    transition:.2s;
+    font-weight:bold;
+    color:#475569;
+}
+
+.scale input:checked + span{
+    background:#2563eb;
+    border-color:#2563eb;
+    color:white;
+    transform:scale(1.03);
+}
+
+.scale-desc{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+    margin-top:5px;
+    text-align:center;
+    font-size:11px;
+    color:#64748b;
+}
+
+/* ================= BUTTON ================= */
+
+.button-area{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+button{
+    border:none;
+    border-radius:10px;
+    padding:13px 20px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.btn-submit{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-result{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-reset{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-back{
+    background:#64748b;
+    color:white;
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+    display:none;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.error{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* ================= RESULT ================= */
+
+#hasilSection{
+    display:none;
+}
+
+.result-summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.result-box{
+    background:#f8fafc;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    border:1px solid #e2e8f0;
+}
+
+.result-value{
+    font-size:32px;
+    font-weight:bold;
+    color:#2563eb;
+}
+
+.result-label{
+    color:#64748b;
+    margin-top:5px;
+}
+
+/* ================= BAR ================= */
+
+.bar-item{
+    margin-bottom:15px;
+}
+
+.bar-label{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:5px;
+    font-size:14px;
+}
+
+.bar{
+    height:25px;
+    background:#e2e8f0;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar-fill{
+    height:100%;
+    background:#2563eb;
+    border-radius:20px;
+    transition:width .5s;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th,
+td{
+    border:1px solid #cbd5e1;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+}
+
+td:first-child{
+    text-align:left;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    padding:25px 10px;
+    color:#64748b;
+    font-size:13px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:700px){
+
+    .container{
+        padding:10px;
+    }
+
+    .header{
+        padding:18px;
+    }
+
+    .logo{
+        width:100px;
+        height:100px;
+    }
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .header h2{
+        font-size:17px;
+    }
+
+    .card{
+        padding:17px;
+    }
+
+    .scale{
+        gap:4px;
+    }
+
+    .scale span{
+        padding:9px 2px;
+        font-size:13px;
+    }
+
+    .scale-desc{
+        font-size:9px;
+        gap:4px;
+    }
+
+    .result-summary{
+        grid-template-columns:1fr;
+    }
+
+    button{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <!-- LOGO UNP DARI FILE LOKAL -->
+        <img
+            src="logo-unp.png"
+            alt="Logo Universitas Negeri Padang"
+            class="logo"
+        >
+
+        <h3>KEGIATAN PENGABDIAN KEPADA MASYARAKAT</h3>
+
+        <h1>ANGKET EVALUASI KEGIATAN</h1>
+
+        <h2>JUDUL PENGABDIAN DI SINI</h2>
+
+        <p>
+            Angket ini bertujuan untuk mengetahui tanggapan peserta
+            terhadap pelaksanaan kegiatan pengabdian kepada masyarakat
+            serta penggunaan media permainan edukatif dalam pembelajaran
+            matematika.
+        </p>
+
+        <div class="team">
+
+            <div class="team-title">
+                Tim Pengabdian kepada Masyarakat
+            </div>
+
+            <div class="team-list">
+
+                <div class="team-member">Pebrudal Zanu</div>
+                <div class="team-member">Helma</div>
+                <div class="team-member">Dewi Murni</div>
+                <div class="team-member">Muhammad Subhan</div>
+                <div class="team-member">Riry Sriningsih</div>
+                <div class="team-member">Yoli Agnesia</div>
+                <div class="team-member">Media Rosha</div>
+                <div class="team-member">Meira Parma Dewi</div>
+                <div class="team-member">Ayuni Kemala Safira</div>
+                <div class="team-member">Yusmet Rizal</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= ANGKET ================= -->
+
+    <div id="angketSection">
+
+        <div class="card">
+
+            <div class="card-title">
+                A. Identitas Responden
+            </div>
+
+            <div class="form-group">
+
+                <label for="nama">
+                    Nama
+                </label>
+
+                <input
+                    type="text"
+                    id="nama"
+                    placeholder="Masukkan nama"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="asal">
+                    Asal Sekolah / Instansi
+                </label>
+
+                <input
+                    type="text"
+                    id="asal"
+                    placeholder="Masukkan sekolah atau instansi"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="kelas">
+                    Kelas / Tingkat
+                </label>
+
+                <input
+                    type="text"
+                    id="kelas"
+                    placeholder="Contoh: Kelas VII"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PETUNJUK ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                B. Petunjuk Pengisian
+            </div>
+
+            <p>
+                Berikan penilaian sesuai dengan pengalaman Anda selama
+                mengikuti kegiatan. Pilih salah satu nilai dari 1 sampai 5.
+            </p>
+
+            <div style="line-height:1.8">
+
+                <b>1</b> = Sangat Tidak Setuju<br>
+                <b>2</b> = Tidak Setuju<br>
+                <b>3</b> = Cukup / Netral<br>
+                <b>4</b> = Setuju<br>
+                <b>5</b> = Sangat Setuju
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PERTANYAAN ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                C. Penilaian Kegiatan
+            </div>
+
+            <div id="questions"></div>
+
+        </div>
+
+
+        <!-- ================= SARAN ================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                D. Saran dan Masukan
+            </div>
+
+            <div class="form-group">
+
+                <label for="saran">
+                    Tuliskan saran, kritik, atau masukan Anda
+                </label>
+
+                <textarea
+                    id="saran"
+                    placeholder="Tuliskan saran atau masukan Anda di sini..."
+                ></textarea>
+
+            </div>
+
+            <div class="button-area">
+
+                <button
+                    class="btn-submit"
+                    onclick="simpanAngket()">
+                    ✓ Kirim Angket
+                </button>
+
+                <button
+                    class="btn-result"
+                    onclick="tampilkanHasil()">
+                    📊 Lihat Hasil
+                </button>
+
+            </div>
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= HASIL ================= -->
+
+    <div id="hasilSection">
+
+        <div class="card">
+
+            <div class="card-title">
+                📊 Hasil Angket
+            </div>
+
+            <div class="result-summary">
+
+                <div class="result-box">
+
+                    <div
+                        class="result-value"
+                        id="jumlahResponden">
+                        0
+                    </div>
+
+                    <div class="result-label">
+                        Jumlah Responden
+                    </div>
+
+                </div>
+
+                <div class="result-box">
+
+                    <div
+                        class="result-value"
+                        id="rataRata">
+                        0
+                    </div>
+
+                    <div class="result-label">
+                        Rata-rata Nilai
+                    </div>
+
+                </div>
+
+                <div class="result-box">
+
+                    <div
+                        class="result-value"
+                        id="persenKepuasan">
+                        0%
+                    </div>
+
+                    <div class="result-label">
+                        Tingkat Kepuasan
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GRAFIK -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Grafik Penilaian
+            </div>
+
+            <div id="grafik"></div>
+
+        </div>
+
+
+        <!-- REKAP -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Rekapitulasi Setiap Pertanyaan
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Pertanyaan
+                            </th>
+
+                            <th>
+                                Rata-rata
+                            </th>
+
+                            <th>
+                                Jumlah Jawaban
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="rekapTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- SARAN -->
+
+        <div class="card">
+
+            <div class="card-title">
+                💬 Saran dan Masukan Responden
+            </div>
+
+            <div id="daftarSaran"></div>
+
+        </div>
+
+
+        <div class="card">
+
+            <button
+                class="btn-back"
+                onclick="kembaliKeAngket()">
+                ← Kembali ke Angket
+            </button>
+
+            <button
+                class="btn-reset"
+                onclick="hapusData()">
+                🗑 Hapus Semua Data
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        <div>
+            Kegiatan Pengabdian kepada Masyarakat
+        </div>
+
+        <div>
+            Universitas Negeri Padang
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DATA PERTANYAAN
+===================================================== */
+
+const pertanyaan = [
+
+    "Materi yang disampaikan dalam kegiatan mudah dipahami.",
+
+    "Kegiatan pengabdian kepada masyarakat dilaksanakan dengan menarik.",
+
+    "Pemateri menjelaskan materi dengan jelas dan mudah dipahami.",
+
+    "Kegiatan memberikan pengalaman belajar yang menyenangkan.",
+
+    "Waktu pelaksanaan kegiatan sudah sesuai.",
+
+    "Permainan edukatif membantu saya memahami konsep matematika.",
+
+    "Permainan membuat pembelajaran matematika menjadi lebih menarik.",
+
+    "Saya dapat belajar sambil bermain melalui permainan edukatif.",
+
+    "Permainan membantu saya memahami konsep bilangan dan operasi matematika.",
+
+    "Saya tertarik menggunakan permainan edukatif seperti ini untuk belajar matematika."
+
+];
+
+
+/* =====================================================
+   TAMPILKAN PERTANYAAN
+===================================================== */
+
+function buatPertanyaan(){
+
+    const container =
+        document.getElementById("questions");
+
+    container.innerHTML = "";
+
+    pertanyaan.forEach((teks,index)=>{
+
+        const nomor = index + 1;
+
+        const div =
+            document.createElement("div");
+
+        div.className = "question";
+
+        div.innerHTML = `
+
+            <div class="question-number">
+                Pertanyaan ${nomor}
+            </div>
+
+            <div class="question-text">
+                ${teks}
+            </div>
+
+            <div class="scale">
+
+                <label>
+                    <input
+                        type="radio"
+                        name="q${nomor}"
+                        value="1">
+                    <span>1</span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="q${nomor}"
+                        value="2">
+                    <span>2</span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="q${nomor}"
+                        value="3">
+                    <span>3</span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="q${nomor}"
+                        value="4">
+                    <span>4</span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="q${nomor}"
+                        value="5">
+                    <span>5</span>
+                </label>
+
+            </div>
+
+            <div class="scale-desc">
+
+                <div>
+                    Sangat<br>Tidak Setuju
+                </div>
+
+                <div>
+                    Tidak<br>Setuju
+                </div>
+
+                <div>
+                    Netral
+                </div>
+
+                <div>
+                    Setuju
+                </div>
+
+                <div>
+                    Sangat<br>Setuju
+                </div>
+
+            </div>
+
+        `;
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   AMBIL DATA
+===================================================== */
+
+function ambilData(){
+
+    let data =
+        JSON.parse(
+            localStorage.getItem("dataAngket")
+        );
+
+    if(!data){
+        data = [];
+    }
+
+    return data;
+}
+
+
+/* =====================================================
+   SIMPAN ANGKET
+===================================================== */
+
+function simpanAngket(){
+
+    const nama =
+        document.getElementById("nama").value.trim();
+
+    const asal =
+        document.getElementById("asal").value.trim();
+
+    const kelas =
+        document.getElementById("kelas").value.trim();
+
+    const saran =
+        document.getElementById("saran").value.trim();
+
+
+    if(nama === ""){
+
+        tampilkanPesan(
+            "Nama responden belum diisi.",
+            false
+        );
+
+        return;
+    }
+
+
+    let jawaban = [];
+
+
+    for(let i=1;i<=pertanyaan.length;i++){
+
+        const pilihan =
+            document.querySelector(
+                `input[name="q${i}"]:checked`
+            );
+
+        if(!pilihan){
+
+            tampilkanPesan(
+                "Mohon jawab semua pertanyaan sebelum mengirim.",
+                false
+            );
+
+            return;
+        }
+
+        jawaban.push(
+            Number(pilihan.value)
+        );
+
+    }
+
+
+    const data =
+        ambilData();
+
+
+    const responden = {
+
+        id:Date.now(),
+
+        nama:nama,
+
+        asal:asal,
+
+        kelas:kelas,
+
+        jawaban:jawaban,
+
+        saran:saran,
+
+        waktu:new Date().toLocaleString(
+            "id-ID"
+        )
+
+    };
+
+
+    data.push(responden);
+
+
+    localStorage.setItem(
+        "dataAngket",
+        JSON.stringify(data)
+    );
+
+
+    tampilkanPesan(
+        "✓ Angket berhasil disimpan. Terima kasih atas partisipasi Anda.",
+        true
+    );
+
+
+    document
+        .getElementById("nama")
+        .value = "";
+
+    document
+        .getElementById("asal")
+        .value = "";
+
+    document
+        .getElementById("kelas")
+        .value = "";
+
+    document
+        .getElementById("saran")
+        .value = "";
+
+
+    document
+        .querySelectorAll(
+            'input[type="radio"]'
+        )
+        .forEach(input=>{
+            input.checked = false;
+        });
+
+}
+
+
+/* =====================================================
+   PESAN
+===================================================== */
+
+function tampilkanPesan(teks,berhasil){
+
+    const box =
+        document.getElementById("message");
+
+    box.style.display = "block";
+
+    box.className =
+        "message " +
+        (berhasil ? "success" : "error");
+
+    box.innerHTML = teks;
+
+
+    setTimeout(()=>{
+
+        box.style.display = "none";
+
+    },5000);
+
+}
+
+
+/* =====================================================
+   TAMPILKAN HASIL
+===================================================== */
+
+function tampilkanHasil(){
+
+    const data =
+        ambilData();
+
+
+    if(data.length === 0){
+
+        alert(
+            "Belum ada data responden."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("angketSection")
+        .style.display = "none";
+
+    document
+        .getElementById("hasilSection")
+        .style.display = "block";
+
+
+    hitungHasil();
+
+}
+
+
+/* =====================================================
+   HITUNG HASIL
+===================================================== */
+
+function hitungHasil(){
+
+    const data =
+        ambilData();
+
+
+    const jumlah =
+        data.length;
+
+
+    let totalSemua = 0;
+
+    let jumlahSemua = 0;
+
+
+    let totalPertanyaan =
+        new Array(pertanyaan.length)
+        .fill(0);
+
+
+    let jumlahJawaban =
+        new Array(pertanyaan.length)
+        .fill(0);
+
+
+    data.forEach(responden=>{
+
+        responden.jawaban.forEach(
+            (nilai,index)=>{
+
+                totalSemua += nilai;
+
+                jumlahSemua++;
+
+                totalPertanyaan[index]
+                    += nilai;
+
+                jumlahJawaban[index]++;
+
+            }
+        );
+
+    });
+
+
+    const rata =
+        totalSemua / jumlahSemua;
+
+
+    const kepuasan =
+        (rata / 5) * 100;
+
+
+    document
+        .getElementById("jumlahResponden")
+        .textContent = jumlah;
+
+
+    document
+        .getElementById("rataRata")
+        .textContent =
+            rata.toFixed(2);
+
+
+    document
+        .getElementById("persenKepuasan")
+        .textContent =
+            kepuasan.toFixed(1) + "%";
+
+
+    /* ================= GRAFIK ================= */
+
+    const grafik =
+        document.getElementById("grafik");
+
+    grafik.innerHTML = "";
+
+
+    pertanyaan.forEach(
+        (teks,index)=>{
+
+            const rataPertanyaan =
+                totalPertanyaan[index] /
+                jumlahJawaban[index];
+
+
+            const persen =
+                (rataPertanyaan / 5) * 100;
+
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "bar-item";
+
+
+            div.innerHTML = `
+
+                <div class="bar-label">
+
+                    <span>
+                        ${index+1}. ${teks}
+                    </span>
+
+                    <b>
+                        ${rataPertanyaan.toFixed(2)}
+                    </b>
+
+                </div>
+
+                <div class="bar">
+
+                    <div
+                        class="bar-fill"
+                        style="width:${persen}%">
+                    </div>
+
+                </div>
+
+            `;
+
+
+            grafik.appendChild(div);
+
+        }
+    );
+
+
+    /* ================= TABLE ================= */
+
+    const table =
+        document.getElementById("rekapTable");
+
+    table.innerHTML = "";
+
+
+    pertanyaan.forEach(
+        (teks,index)=>{
+
+            const rataPertanyaan =
+                totalPertanyaan[index] /
+                jumlahJawaban[index];
+
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${index+1}. ${teks}
+                </td>
+
+                <td>
+                    ${rataPertanyaan.toFixed(2)}
+                </td>
+
+                <td>
+                    ${jumlahJawaban[index]}
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+
+    /* ================= SARAN ================= */
+
+    const daftarSaran =
+        document.getElementById("daftarSaran");
+
+
+    daftarSaran.innerHTML = "";
+
+
+    const saranAda =
+        data.filter(
+            item =>
+                item.saran &&
+                item.saran.trim() !== ""
+        );
+
+
+    if(saranAda.length === 0){
+
+        daftarSaran.innerHTML =
+            "<p>Belum ada saran atau masukan.</p>";
+
+    }else{
+
+        saranAda.forEach(item=>{
+
+            const div =
+                document.createElement("div");
+
+            div.style.background =
+                "#f8fafc";
+
+            div.style.border =
+                "1px solid #e2e8f0";
+
+            div.style.borderRadius =
+                "12px";
+
+            div.style.padding =
+                "15px";
+
+            div.style.marginBottom =
+                "10px";
+
+
+            div.innerHTML = `
+
+                <b>
+                    ${item.nama}
+                </b>
+
+                <p>
+                    ${item.saran}
+                </p>
+
+                <small style="color:#64748b">
+                    ${item.waktu}
+                </small>
+
+            `;
+
+
+            daftarSaran.appendChild(div);
+
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   KEMBALI
+===================================================== */
+
+function kembaliKeAngket(){
+
+    document
+        .getElementById("hasilSection")
+        .style.display = "none";
+
+    document
+        .getElementById("angketSection")
+        .style.display = "block";
+
+}
+
+
+/* =====================================================
+   HAPUS DATA
+===================================================== */
+
+function hapusData(){
+
+    const yakin =
+        confirm(
+            "Apakah Anda yakin ingin menghapus seluruh data angket?"
+        );
+
+
+    if(!yakin){
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "dataAngket"
+    );
+
+
+    hitungHasil();
+
+    alert(
+        "Semua data angket telah dihapus."
+    );
+
+}
+
+
+/* =====================================================
+   MULAI
+===================================================== */
+
+buatPertanyaan();
+
+</script>
+
+</body>
+</html>
